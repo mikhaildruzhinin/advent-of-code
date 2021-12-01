@@ -1,14 +1,14 @@
-package year2021.day01.task01
+package year2021.day01
 
-import scala.io.Source
 import scala.annotation.tailrec
+import scala.io.Source
 
-object Solution extends App {
+object Task01 extends App {
   /**
    * Count the number of times a depth measurement increases from the previous measurement.
    */
   def compareMeasurements(n: Int): Boolean = {
-    if (inputData.lift(n).getOrElse(0) > inputData.lift(n-1).getOrElse(0)) true
+    if (inputData.lift(n).getOrElse(0) > inputData.lift(n - 1).getOrElse(0)) true
     else false
   }
 
@@ -17,14 +17,15 @@ object Solution extends App {
     def loop(x: Int, acc: Int): Int = {
       if (x <= 1) acc
       else {
-        if (compareMeasurements(x)) loop(x-1, acc+1)
-        else loop(x-1, acc)
+        if (compareMeasurements(x)) loop(x - 1, acc + 1)
+        else loop(x - 1, acc)
       }
     }
+
     loop(n, 0)
   }
 
-  val inputFile = Source.fromFile("src/main/resources/data/year2021/day01/task01/input.txt")
+  val inputFile = Source.fromFile("src/main/resources/data/year2021/day01/input.txt")
   val inputData: List[Int] = inputFile.getLines().toList.map(_.toInt)
   inputFile.close()
 
